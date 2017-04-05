@@ -5,3 +5,5 @@ redirect_URI : 回调地址
 
 运行Java程序 ：/weibo4j-oauth2/examples/weibo4j/examples/oauth2/OAuth4Code2.java
 启动后授权码贴到控制台 按回车找到access_token  供weibo-public-platform使用
+
+注意：本程序是微博官方网站的SDK源代码文件，如有需要可以在官网下载

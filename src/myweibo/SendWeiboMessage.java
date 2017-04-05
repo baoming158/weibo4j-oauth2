@@ -15,11 +15,11 @@ public class SendWeiboMessage {
 
 
 	public static void main(String[] args) throws WeiboException, IOException {
-		String access_token = "2.00khpOcF0EqAs36ac9171e07PxWfvC";
+		String access_token = "2.00FoNgQGFO64ED8f9b11ed9fG2AMvD";
 		String content = URLEncoder.encode(
 				"#酷云大数据#1月1日全天（00:00-24:00）卫视频道排行榜：NO.1#湖南卫视# NO.2#东方卫视# NO.3#浙江卫视# 【自助获取更多免费数据】http://pro.eye.kuyun.com/mobile/mobile_rank.html?_=0.75438000444759",
 				"utf-8");
-		String filePath = "C:\\Users\\Public\\Pictures\\Sample Pictures\\11.jpg";
+		String filePath = "/Users/baoming/Documents/workspace/git_work/video-dot/src/main/webapp/assets/images/thumb-1.png";
 		ImageItem item = new ImageItem(getContent(filePath));
 		Timeline tm = new Timeline(access_token);
 		try {

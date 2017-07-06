@@ -15,15 +15,16 @@ public class SendWeiboMessage {
 
 
 	public static void main(String[] args) throws WeiboException, IOException {
-		String access_token = "2.00FoNgQGFO64ED8f9b11ed9fG2AMvD";
+//		String access_token = "2.00FoNgQGFO64ED8f9b11ed9fG2AMvD";
+		String access_token = "2.00Fyi8zCIdfTsDc2eb371aa1TXXQyB";//正式
 		String content = URLEncoder.encode(
-				"#酷云大数据#1月1日全天（00:00-24:00）卫视频道排行榜：NO.1#湖南卫视# NO.2#东方卫视# NO.3#浙江卫视# 【自助获取更多免费数据】http://pro.eye.kuyun.com/mobile/mobile_rank.html?_=0.75438000444759",
+				"#酷云大数据#1月1日全天（00:00-24:00）卫视频道排行榜：NO.1湖南卫视 NO.2#东方卫视# NO.3#浙江卫视# 【自助获取更多免费数据】http://pro.eye.kuyun.com/mobile/mobile_rank.html?_=0.75438000444759",
 				"utf-8");
-		String filePath = "/Users/baoming/Documents/workspace/git_work/video-dot/src/main/webapp/assets/images/thumb-1.png";
+		String filePath = "/Users/baoming/temp/img/20170704/8dcc6bc7f3c910ec0763399098781fb1.png";
 		ImageItem item = new ImageItem(getContent(filePath));
 		Timeline tm = new Timeline(access_token);
 		try {
-			Status status = tm.uploadStatus(content, item);
+			Status status = tm.share(content, item);
 			Log.logInfo(status.toString());
 		} catch (WeiboException e) {
 			Log.logInfo("发送微博信息失败");
@@ -44,7 +45,20 @@ public class SendWeiboMessage {
 		}
 	}
 
-	public static byte[] getContent(String filePath) throws IOException {
+	public static void sendWeiboShare(String access_token, String content, String filePath) {
+		try {
+			content = URLEncoder.encode(content, "utf-8");
+			ImageItem item = new ImageItem(getContent(filePath));
+			Timeline tm = new Timeline(access_token);
+			Status status = tm.share(content, item);
+			Log.logInfo(status.toString());
+		} catch (Exception e) {
+			Log.logInfo("发送微博信息失败");
+			throw new RuntimeException(e);
+		}
+	}
+
+		public static byte[] getContent(String filePath) throws IOException {
 		File file = new File(filePath);
 		long fileSize = file.length();
 		if (fileSize > 2147483647L) {

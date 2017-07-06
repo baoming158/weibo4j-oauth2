@@ -1025,22 +1025,43 @@ public class Timeline extends Weibo {
 	}
 
 	/**
-	 * 上传图片并发布一条新微博
-	 * 
+	 * (新接口)上传图片并发布一条新微博
+	 *
 	 * @param status
 	 *            要发布的微博文本内容，必须做URLencode，内容不超过140个汉字
-	 * @param pic
-	 *            要上传的图片，仅支持JPEG、GIF、PNG格式，图片大小小于5M。
-	 * @param lat
-	 *            纬度，有效范围：-90.0到+90.0，+表示北纬，默认为0.0。
-	 * @param long 经度，有效范围：-180.0到+180.0，+表示东经，默认为0.0。
+	 * @param 要上传的图片，仅支持JPEG、GIF、PNG格式，图片大小小于5M。
 	 * @return Status
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see http://open.weibo.com/wiki/2/statuses/upload
-	 * @since JDK 1.5
+	 * @see http://open.weibo.com/wiki/2/statuses/share
 	 */
+	public Status share(String status, ImageItem item)
+			throws WeiboException {
+		return new Status(client.multPartURL(WeiboConfig.getValue("baseURL")
+						+ "statuses/share.json",
+				new PostParameter[]{new PostParameter("status", status)},
+				item, access_token));
+	}
+
+
+		/**
+         * 上传图片并发布一条新微博
+         *
+         * @param status
+         *            要发布的微博文本内容，必须做URLencode，内容不超过140个汉字
+         * @param pic
+         *            要上传的图片，仅支持JPEG、GIF、PNG格式，图片大小小于5M。
+         * @param lat
+         *            纬度，有效范围：-90.0到+90.0，+表示北纬，默认为0.0。
+         * @param long 经度，有效范围：-180.0到+180.0，+表示东经，默认为0.0。
+         * @return Status
+         * @throws WeiboException
+         *             when Weibo service or network is unavailable
+         * @version weibo4j-V2 1.0.0
+         * @see http://open.weibo.com/wiki/2/statuses/upload
+         * @since JDK 1.5
+         */
 	public Status uploadStatus(String status, ImageItem item, Float lat,
 			Float longs) throws WeiboException {
 		return new Status(client.multPartURL(WeiboConfig.getValue("baseURL")
